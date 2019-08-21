@@ -21,7 +21,7 @@ const Friends = () => {
 
     getData();
 
-    	useEffect(() => {
+    useEffect(() => {
 		axiosWithAuth()
 			.get('http://localhost:5000/api/friends')
 			.then(res => {
@@ -50,9 +50,9 @@ const Friends = () => {
 			{friends.map(friend => {
 				return (
 					<div>
-						<p>{friend.name}</p>
-						<p>{friend.age}</p>
-						<p>{friend.email}</p>
+						<p><strong>Name:</strong> {friend.name}</p>
+						<p><strong>Age:</strong> {friend.age}</p>
+						<p><strong>Email:</strong> {friend.email}</p>
 					</div>
 				);
 			})}
