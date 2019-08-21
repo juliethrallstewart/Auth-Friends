@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
+import AddFriend from '../AddFriend/AddFriend';
+import axios from 'axios'
 
 const Friends = () => {
 	const [ friends, setFriends ] = useState([]);
@@ -17,8 +19,20 @@ const Friends = () => {
 			.catch(err => console.log(err.response));
 	};
 
-	getData();
+    getData();
+
+    const addFriend = newFriend => {
+		axiosWithAuth()
+			.post('http://localhost:5000/api/friends', newFriend)
+			.then(res => {
+				setFriends(res.data);
+            })
+            .then(console.log(friends))
+			.catch(err => console.log(err.response));
+	};
+    
 	return (
+        <>
 		<div>
 			{friends.map(friend => {
 				return (
@@ -31,6 +45,8 @@ const Friends = () => {
 				);
 			})}
 		</div>
+        <AddFriend addFriend={addFriend} />
+        </>
 	);
 };
 

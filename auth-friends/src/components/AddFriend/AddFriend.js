@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 
 
 const AddFriend = props => {
@@ -6,6 +7,17 @@ const AddFriend = props => {
 	const { addFriend } = props;
 
 	const [ newFriend, setNewFriend ] = useState({ name: '', age: '', email: '' });
+
+	// useEffect(() => {
+	// 	axios
+	// 		.get('http://localhost:3333/smurfs')
+	// 		.then(res => {
+	// 			setSmurfs(res.data);
+	// 		})
+	// 		.catch(e => {
+	// 			console.log('server error', e);
+	// 		});
+	// }, []);
 
 	const handleChange = event => {
 		setNewFriend({ ...newFriend, [event.target.name]: event.target.value });
