@@ -21,6 +21,17 @@ const Friends = () => {
 
     getData();
 
+    	useEffect(() => {
+		axiosWithAuth()
+			.get('http://localhost:5000/api/friends')
+			.then(res => {
+				setFriends(res.data);
+			})
+			.catch(e => {
+				console.log('server error', e);
+			});
+	}, []);
+
     const addFriend = newFriend => {
 		axiosWithAuth()
 			.post('http://localhost:5000/api/friends', newFriend)
@@ -33,11 +44,12 @@ const Friends = () => {
     
 	return (
         <>
+         <AddFriend addFriend={addFriend} />
 		<div>
+        <h1>Friends!</h1>
 			{friends.map(friend => {
 				return (
 					<div>
-						<h1>Friends!</h1>
 						<p>{friend.name}</p>
 						<p>{friend.age}</p>
 						<p>{friend.email}</p>
@@ -45,7 +57,6 @@ const Friends = () => {
 				);
 			})}
 		</div>
-        <AddFriend addFriend={addFriend} />
         </>
 	);
 };
