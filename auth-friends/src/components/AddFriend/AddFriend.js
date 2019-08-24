@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import axios from 'axios'
+import BarLoader from 'react-spinners'
 
 
 const AddFriend = props => {
 
-	const { addFriend } = props;
+	const { addFriend, isLoading } = props;
 
 	const [ newFriend, setNewFriend ] = useState({ name: '', age: '', email: '' });
 
@@ -26,7 +26,10 @@ const AddFriend = props => {
 						<input placeholder="age" value={newFriend.age} name="age" onChange={handleChange} />
                         <input placeholder="email" value={newFriend.email} name="email" onChange={handleChange} />
 
-						<button type="submit">add Friend</button>
+						{/* <button type="submit">add Friend</button> */}
+						<button>
+							{isLoading ? <BarLoader className="spinner" color="#00BFFF" /> : 'Add Friend'}
+						</button>
 					</form>
 				</div>
 			</div>
