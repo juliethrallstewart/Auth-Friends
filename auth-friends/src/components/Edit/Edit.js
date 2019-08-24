@@ -47,6 +47,7 @@ const Edit = props => {
 			.put(`http://localhost:5000/api/friends/${id}`, friend)
 			.then(res => {
 				console.log(res);
+				props.setFriends(res.data);
 			})
 			.catch(e => {
 				console.log('put error', e);
@@ -66,7 +67,6 @@ const Edit = props => {
 						<input placeholder="name" value={friend.name} name="name" onChange={handleChange} />
 						<input placeholder="age" value={friend.age} name="age" onChange={handleChange} />
 						<input placeholder="email" value={friend.email} name="email" onChange={handleChange} />
-						{/* <button>{isLoading ? <BarLoader className="spinner" color="#00BFFF" /> : 'Submit Edit'}</button> */}
 						<button>Submit</button>
 					</form>
 				</div>
